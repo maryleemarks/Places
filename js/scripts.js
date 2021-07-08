@@ -20,6 +20,14 @@ DestinationBook.prototype.findDestination = function(id) {
   return false
 };
 
+DestinationBook.prototype.deleteDestination = function(id) {
+  if (this.destinations[id] === undefined) {
+    return false;
+  }
+  delete this.destinations[id];
+  return  true;
+};
+
 function Destination(location, landmark, toy, notes) {
   this.location = location;
   this.landmark = landmark;
@@ -71,6 +79,12 @@ $(document).ready(function() {
     let inputtedLandmark = $("#landmark").val();
     let inputtedToy = $("#toy").val();
     let inputtedNotes = $("#notes").val();
+
+    $("#location").val("");
+    $("#landmark").val("");
+    $("#toy").val("");
+    $("#notes").val("");
+
     let newDestination = new Destination(inputtedLocation, inputtedLandmark, inputtedToy, inputtedNotes);
     console.log(newDestination);
     destinationBook.addDestination(newDestination);
